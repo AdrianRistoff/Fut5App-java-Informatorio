@@ -9,26 +9,8 @@ public class Equipo {
     private LocalDate fechaDeCreacion;
     private Entrenador entrenador;
     private Jugador jugador;
-
-    private static List<Jugador> integranteDelEquipo = new ArrayList<>();
-
+    public static List<Jugador> integranteDelEquipo = new ArrayList<>();
     public static List<Equipo> equipos = new ArrayList<>();
-
-    public static List<Equipo> getEquipos() {
-        return equipos;
-    }
-
-    public void setEquipos(List<Equipo> equipos) {
-        this.equipos = equipos;
-    }
-
-    public static List<Jugador> getIntegranteDelEquipo() {
-        return integranteDelEquipo;
-    }
-
-    public void setIntegranteDelEquipo(List<Jugador> integranteDelEquipo) {
-        this.integranteDelEquipo = integranteDelEquipo;
-    }
 
     public String getNombre() {
         return nombre;

@@ -66,29 +66,29 @@ public class App
     private static Equipo crearEquipo(){
         Equipo crearEquipo = new Equipo();
         System.out.println("Creacion de un equipo");
-        System.out.println("Ingrese el nombre del equipo: ");
+        System.out.println("\nIngrese el nombre del equipo: ");
         crearEquipo.setNombre(getScanner().nextLine());
         crearEquipo.setFechaDeCreacion(LocalDate.now());
         /*System.out.println("Ingrese la fecha de creacion del equipo (AAAA-MM-DD): ");
         crearEquipo.setFechaDeCreacion(LocalDate.parse(getScanner().nextLine()));
         */
         crearEquipo.setEntrenador(crearEntrenador());
-        System.out.println("A continuacion se procede a la carga de los 5 jugadores del equipo");
+        System.out.println("\nA continuacion se procede a la carga de los 5 jugadores del equipo");
         for (int i=0; i<2;i++){
             Jugador crearJugador = crearJugador();
-            crearEquipo.getIntegranteDelEquipo().add(crearJugador);
-            System.out.println("a " + crearEquipo.getIntegranteDelEquipo());
+            crearEquipo.integranteDelEquipo.add(crearJugador);
+
             crearJugador.setEquipo(crearEquipo.getNombre());
         }
-        crearEquipo.getEquipos().add(crearEquipo);
-        System.out.println("b " + crearEquipo.getEquipos());
+        crearEquipo.equipos.add(crearEquipo);
+
 
         return crearEquipo;
     }
 
     private static Entrenador crearEntrenador(){
         Entrenador crearEntrenador = new Entrenador();
-        System.out.println("Ingrese el nombre del entrenador: ");
+        System.out.println("\nIngrese el nombre del entrenador: ");
         crearEntrenador.setNombreEntrenador(getScanner().nextLine());
         System.out.println("Ingrese el apellido del entrenador: ");
         crearEntrenador.setApellidoEntrenador(getScanner().nextLine());
@@ -145,7 +145,7 @@ public class App
         }
 
         System.out.println("Ingrese el numero de la camiseta: ");
-        crearJugador.setNumeroCamiseta(getScanner().nextInt());
+        crearJugador.setNumeroCamiseta(getScanner().nextInt());getScanner().nextLine();
 
         return crearJugador;
     }
@@ -153,10 +153,10 @@ public class App
     private static void buscarJugador(){
         System.out.print("Ingrese el nombre del jugador: ");
         String nombreJugador = getScanner().nextLine();
-        for (Equipo equipo : Equipo.getEquipos()){
-            System.out.println("1 " + Equipo.getEquipos());
-            for (Jugador jugador : Equipo.getIntegranteDelEquipo()){
-                System.out.println("2 " + Equipo.getIntegranteDelEquipo());
+        for (Equipo equipo : Equipo.equipos){
+            System.out.println("1 " + Equipo.equipos);
+            for (Jugador jugador : Equipo.integranteDelEquipo){
+                System.out.println("2 " + Equipo.integranteDelEquipo);
                 if (Jugador.getNombreJugador().equalsIgnoreCase(nombreJugador)){
                     System.out.println("Nombre: " + Jugador.getNombreJugador());
                     System.out.println("Apellido: " + Jugador.getApellidoJugador());
@@ -174,7 +174,7 @@ public class App
     private static void buscarEquipo1(){
         System.out.println("Ingrese el nombre del equipo a buscar: ");
         String nombreEquipo = getScanner().nextLine();
-        for (Equipo equipo : Equipo.getEquipos()) {
+        for (Equipo equipo : Equipo.equipos) {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)){
                 System.out.println("Nombre del equipo ingresado: " + equipo.getNombre());
                 System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombreEntrenador());
@@ -191,12 +191,12 @@ public class App
     private static void buscarEquipo2(){
         System.out.println("Ingrese el nombre del equipo a buscar: ");
         String nombreEquipo = getScanner().nextLine();
-        for (Equipo equipo : Equipo.getEquipos()) {
+        for (Equipo equipo : Equipo.equipos) {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)){
                 System.out.println("Nombre del equipo ingresado: " + equipo.getNombre());
                 System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombreEntrenador());
                 System.out.println("Nombre de los jugadores: ");
-                for (Jugador jugador : equipo.getIntegranteDelEquipo()) {
+                for (Jugador jugador : equipo.integranteDelEquipo) {
                     System.out.println("- " + jugador.getNombreJugador() + " " + jugador.getApellidoJugador());
                 }
                 return;
@@ -211,9 +211,9 @@ public class App
     private static void eliminarEquipo(){
         System.out.print("Ingrese el nombre del equipo a eliminar: ");
         String nombreEquipo = getScanner().nextLine();
-        for (int i = 0; i < Equipo.getEquipos().size(); i++) {
-            if (Equipo.getEquipos().get(i).getNombre().equalsIgnoreCase(nombreEquipo)) {
-                Equipo.getEquipos().remove(i);
+        for (int i = 0; i < Equipo.equipos.size(); i++) {
+            if (Equipo.equipos.get(i).getNombre().equalsIgnoreCase(nombreEquipo)) {
+                Equipo.equipos.remove(i);
                 System.out.println("El equipo ha sido eliminado");
                 return;
             }
